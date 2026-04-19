@@ -1,26 +1,30 @@
 # Smart Marketing Assistant using Crew AI
 
 ## Overview
-The Smart Marketing Assistant is an innovative project that leverages AI agents to automate tasks within an Instagram marketing workflow. This project aims to streamline and optimize various marketing activities, providing users with a powerful tool to enhance their social media strategies.
+
+The Smart Marketing Planning Agent is an AI-powered solution designed to help marketers build smarter campaigns and launch marketing strategies with confidence. It combines research, trend analysis, campaign planning, and briefing creation to support every step of marketing preparation.
 
 ## Workflow
-![](https://github.com/praj2408/Smart-Marketing-Assistant-using-Ai-Agents/blob/main/docs/crew2-instagram.jpg)
+
 ## Features
-- **Automated Content Creation**: Generate engaging posts and stories using AI-powered content creation tools.
-- **Hashtag Optimization**: Analyze and suggest the most effective hashtags to reach a wider audience.
-- **Post Scheduling**: Automatically schedule posts at optimal times for maximum engagement.
-- **Performance Analytics**: Track and analyze the performance of posts and campaigns.
-- **Audience Interaction**: Automate responses to comments and messages to maintain active engagement with followers.
+
+- **Campaign Research**: Collect market insights, competitor information, and audience context.
+- **Marketing Analysis**: Identify trends, opportunities, risks, and positioning strategies.
+- **Strategy Planning**: Create high-impact campaign ideas, messaging frameworks, and activation plans.
+- **Briefing & Execution**: Produce a polished marketing brief that guides creative, media, and launch decisions.
+- **Collaborative Planning**: Coordinate AI agents to build a unified marketing plan across research, strategy, and execution.
 
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/Smart-Marketing-Assistant-using-Ai-Agents.git
    cd Smart-Marketing-Assistant-using-Ai-Agents
    ```
 
 2. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -31,19 +35,21 @@ The Smart Marketing Assistant is an innovative project that leverages AI agents 
      ```
      LANGCHAIN_TRACING_V2=true
      LANGCHAIN_API_KEY=your langchain api key
-     OPENAI_API_KEY=your openai api key
-     OPENAI_MODEL_NAME=gpt-3.5-turbo-0125
+     OPENROUTER_API_KEY=your openrouter api key
+     OPENROUTER_MODEL=openrouter/openai/gpt-3.5-turbo
+     EXA_API_KEY=your-exa-api-key
      ```
 
 ## Usage
 
 1. **Run the Assistant**:
+
    ```bash
    python main.py
    ```
 
-2. **Access the Dashboard**:
-   Open your web browser and navigate to `http://localhost:5000` to access the Smart Marketing Assistant dashboard.
+2. **Use the Web Interface**:
+   Open your web browser and navigate to `http://localhost:3000` once the frontend is running.
 
 ## Configuration
 
@@ -51,13 +57,15 @@ The Smart Marketing Assistant is an innovative project that leverages AI agents 
   You can customize the assistant's behavior and settings by modifying the `config.py` file.
 
 - **AI Models**:
-  The project uses pre-trained AI models. You can replace these models with your own by changing llm = your_model in the main.py file.
+  The project uses OpenRouter-compatible LLMs. You can replace the model by updating `OPENROUTER_MODEL` in the `.env` file.
 
 ## Project Structure
+
 - `requirements.txt:` Lists required Python dependencies.
 - `main.py:` Main script to run the AI agents.
-- `agents:` (Optional) Folder containing code for individual AI agents (market research, content strategy, etc.)
-- `config.py:` (Optional) Configuration file for Crew AI project and API key.
+- `src/agents.py:` Defines AI agents for research, marketing analysis, strategy, and briefing.
+- `src/tasks.py:` Defines the marketing planning tasks that each agent executes.
+- `src/tools.py:` Contains search and data tools used by the agents.
 
 ## Contributing
 
@@ -88,4 +96,4 @@ For any inquiries or support, please open an issue in the repository or contact 
 
 ---
 
-Thank you for using the Smart Marketing Assistant! We hope it helps you achieve your Instagram marketing goals.
+Thank you for using the Smart Marketing Assistant! We hope it helps you succeed with your marketing and meeting preparation.

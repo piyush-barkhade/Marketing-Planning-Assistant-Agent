@@ -1,15 +1,24 @@
+import os
 from crewai import Agent
+from crewai.llm import LLM
 from textwrap import dedent
 from tools import ExaSearchToolSet
 
 
 class MeetingPrepAgents():
     
+    def _get_llm(self):
+        return LLM(
+            model=os.environ.get("OPENROUTER_MODEL", "openrouter/openai/gpt-3.5-turbo"),
+            api_key=os.environ.get("OPENROUTER_API_KEY")
+        )
+    
     def research_agent(self):
         return Agent(
             role="Research Specialist",
             goal="Conduct thorough researcch on people and companies involved in the meeting",
             tools=ExaSearchToolSet.tools(),
+            llm=self._get_llm(),
             backstory=dedent("""\
                 As a Research Specialist, your mission is to uncover detailed information
                 about the individuals and entities participating in the meeting. Your insights
@@ -22,6 +31,7 @@ class MeetingPrepAgents():
             role="Industry Analyst",
             goal="Analyze the current industry trends, challenges, and opportunities",
             tools=ExaSearchToolSet.tools(),
+            llm=self._get_llm(),
             backstory=dedent("""\
                 As an Industry Analyst, your analysis will indentify key trends,
                 challenges facing the industry, and potential opportunities that 
@@ -33,6 +43,7 @@ class MeetingPrepAgents():
         return Agent(
             role="Meeting Strategy Advisor",
             goal="Develop talking points, questions, and strategic angles for the meeting",
+            llm=self._get_llm(),
             backstory=dedent("""\
                 As a Strategy advisor, your expertise will guide the development of 
                 talking points, insightful questions, and strategic angles
@@ -44,6 +55,7 @@ class MeetingPrepAgents():
         return Agent(
             role="Briefing Coordinator",
             goal="Compile all gathered information into a concise, informative briefing document",
+            llm=self._get_llm(),
             backstory=dedent("""\
                 As the Briefing Coordinator, your role is to consolidate the research,
                 analysis, and stratigic insights."""),

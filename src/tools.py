@@ -1,23 +1,24 @@
 import os
 from exa_py import Exa
-from langchain.agents import tool
+from crewai.tools import tool
 
 class ExaSearchToolSet():
     
     @tool
-    def search(query:str):
+    def search(query: str) -> str:
         """Search for a webpage based on the query.
         
         Args:
             query (str): The search query string.
         
         Returns:
-            list: A list of search results.
+            str: A string representation of search results.
         """
-        return ExaSearchToolSet._exa().search(f"{query}", use_autoprompt=True, num_results=3)
+        results = ExaSearchToolSet._exa().search(f"{query}", use_autoprompt=True, num_results=3)
+        return str(results)
     
     @tool
-    def find_similar(url: str):
+    def find_similar(url: str) -> str:
         """Search for webpages similar to a given URL.
         
         The URL passed in should be a URL returned from 'search'.
@@ -26,12 +27,13 @@ class ExaSearchToolSet():
             url (str): The URL to find similar pages for.
         
         Returns:
-            list: A list of similar search results.
+            str: A string representation of similar search results.
         """
-        return ExaSearchToolSet._exa().find_similar(url, num_results=3)
+        results = ExaSearchToolSet._exa().find_similar(url, num_results=3)
+        return str(results)
     
     @tool
-    def get_contents(ids: str):
+    def get_contents(ids: str) -> str:
         """Get the contents of a webpage.
         
         The ids must be passed in as a list, a list of ids returned from 'search'.
@@ -42,20 +44,18 @@ class ExaSearchToolSet():
         Returns:
             str: The content of the webpages concatenated and truncated to 1000 characters each.
         """
-        # print("ids from params:",ids)
         # Evaluate the string representation of the list of IDs
         ids = eval(ids)
-        # print("eval ids:",ids)
         
         # Get the contents of the webpages
         contents = str(ExaSearchToolSet._exa().get_contents(ids))
-        print("contents:",contents)
 
         # Split the contents by 'URL:' and truncate each content to 1000 characters
         contents = contents.split("URL:")
-        contents= [content[:1000] for content in contents]
+        contents = [content[:1000] for content in contents]
         return "\n\n".join(contents)
     
+    @staticmethod
     def tools():
         return [
             ExaSearchToolSet.search,
@@ -63,6 +63,7 @@ class ExaSearchToolSet():
             ExaSearchToolSet.get_contents
         ]
     
+    @staticmethod
     def _exa():
         """Initialize and return an instance of the Exa class.
         
