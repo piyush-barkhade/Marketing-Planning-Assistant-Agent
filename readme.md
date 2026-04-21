@@ -1,4 +1,4 @@
-# Smart Marketing Assistant using Crew AI
+# Smart Marketing Planning Agent
 
 ## Overview
 
