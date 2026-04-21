@@ -19,8 +19,8 @@ The Smart Marketing Planning Agent is an AI-powered solution designed to help ma
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/Smart-Marketing-Assistant-using-Ai-Agents.git
-   cd Smart-Marketing-Assistant-using-Ai-Agents
+   git clone https://github.com/piyush-barkhade/Marketing-Planning-Assistant-Agent.git
+   cd Marketing-Planning-Assistant-Agent
    ```
 
 2. Install dependencies:
